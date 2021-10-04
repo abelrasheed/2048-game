@@ -65,7 +65,7 @@ function draw() {
  }
 
 //   shift everything towards the right (downwards in the board)
- function shift(arr){
+ function right_shift(arr){
    new_arr = [];
    for (let i=0;i<arr.length;i++){
       if (arr[i]!=0){
@@ -82,8 +82,26 @@ function draw() {
  function keyPressed(){
    if (key == " "){
     for (let i=0;i < 4;i++){
-      board_values[i] = shift(board_values[i]);
+      board_values[i] = right_shift_and_merge(board_values[i]);
     }
     random_insert();
    }
+ }
+
+
+ function merge_right(arr){ // merge right
+  for (let ptr = arr.length - 1;ptr>1;ptr--){
+    if (arr[ptr-1] == arr[ptr]){
+      arr[ptr] = arr[ptr] + arr[ptr-1];
+      arr[ptr-1] = 0;
+    }
+  }
+  return arr;
+ }
+
+ function right_shift_and_merge(arr){
+    arr = right_shift(arr);
+    arr = merge_right(arr);
+    arr = right_shift(arr);
+    return arr;
  }
