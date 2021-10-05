@@ -93,13 +93,6 @@ function draw() {
      console.log(board_values);
      board_values = main_operation(board_values);
    }
-    // control = Array_copy(board_values);
-    // for (let i=0;i < 4;i++){
-    //   board_values[i] = right_shift_and_merge(board_values[i]);
-    // }
-    // if (compare_array(board_values,control)){
-    //   random_insert();
-    // }
     if (key === "3"){
       reverse_values(board_values);
     }
@@ -132,43 +125,15 @@ function draw() {
     arr = right_shift(arr);
     return arr;
  }
- function compare_array(array1,array2){ // return True if two arrays are different
-
-   for (let i = 0;i<4;i++){
-     for(let j = 0;j<4;j++)
-     if(array1[i][j] != array2[i][j]){
-       return true;
-     }
-   }
-   return false;
- }
+ 
  function reverse_values(values){
   for (let i = 0;i<4;i++){
     values[i].reverse();
   }
  }
 
- function Array_copy(arr){
-    to_compare = initialize_multidimen_array();
-    for (let i = 0;i<4;i++){
-      for (let j =0;j<4;j++){
-        to_compare[i][j] = arr[i][j];
-      }
-    }
-  return to_compare;
- }
- function initialize_multidimen_array(){
-   return [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
- }
- function matrix_transpose(arr){
-   to_return = initialize_multidimen_array();
-   for (let i = 0;i<4;i++){
-     for (let j = 0;j<4;j++){
-       to_return[i][j] = arr[j][i];
-     }
-   }
-   return to_return;
- }
+ 
+
 
  function main_operation(board_values){
   control = Array_copy(board_values);
