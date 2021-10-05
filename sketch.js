@@ -75,34 +75,38 @@ function draw() {
  }
 
  function keyPressed(){
-   if (keyCode === DOWN_ARROW){
-
+   console.log(key);
+   if (key === "4"){ // down operation
+      board_values = main_operation(board_values);
    }
-   else if (keyCode === UP_ARROW){
+   else if (key === "3"){ // Up operation
      reverse_values(board_values);
+     board_values = main_operation(board_values);
    }
-   else if(keyCode === RIGHT_ARROW){
+   else if(key === "2"){ // right operation
       board_values = matrix_transpose(board_values);
+      board_values = main_operation(board_values);
    }
-   else if(keyCode === LEFT_ARROW){
+   else if(key === "1"){ // left operation
      board_values = matrix_transpose(board_values);
      reverse_values(board_values);
      console.log(board_values);
+     board_values = main_operation(board_values);
    }
-    control = Array_copy(board_values);
-    for (let i=0;i < 4;i++){
-      board_values[i] = right_shift_and_merge(board_values[i]);
-    }
-    if (compare_array(board_values,control)){
-      random_insert();
-    }
-    if (keyCode === UP_ARROW){
+    // control = Array_copy(board_values);
+    // for (let i=0;i < 4;i++){
+    //   board_values[i] = right_shift_and_merge(board_values[i]);
+    // }
+    // if (compare_array(board_values,control)){
+    //   random_insert();
+    // }
+    if (key === "3"){
       reverse_values(board_values);
     }
-    else if(keyCode === RIGHT_ARROW){
+    else if(key === "2"){
       board_values = matrix_transpose(board_values);
    }
-   else if(keyCode === LEFT_ARROW){
+   else if(key === "1"){
     reverse_values(board_values);
     board_values = matrix_transpose(board_values);
     console.log(board_values);
@@ -164,4 +168,15 @@ function draw() {
      }
    }
    return to_return;
+ }
+
+ function main_operation(board_values){
+  control = Array_copy(board_values);
+  for (let i=0;i < 4;i++){
+    board_values[i] = right_shift_and_merge(board_values[i]);
+  }
+  if (compare_array(board_values,control)){
+    random_insert();
+  }
+  return board_values;
  }
