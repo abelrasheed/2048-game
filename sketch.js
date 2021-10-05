@@ -66,29 +66,29 @@ function draw() {
  
 
  function keyPressed(){ // performs the main operations, that is all the shifting operations for all the keys pressed
-   if (key === "4"){ // down operation
+   if (keyCode === DOWN_ARROW){ // down operation
       board_values = main_operation(board_values);
    }
-   else if (key === "3"){ // Up operation
+   else if (keyCode === UP_ARROW){ // Up operation
      reverse_values(board_values);
      board_values = main_operation(board_values);
    }
-   else if(key === "2"){ // right operation
+   else if(keyCode === RIGHT_ARROW){ // right operation
       board_values = matrix_transpose(board_values);
       board_values = main_operation(board_values);
    }
-   else if(key === "1"){ // left operation
+   else if(keyCode === LEFT_ARROW){ // left operation
      board_values = matrix_transpose(board_values);
      reverse_values(board_values);
      board_values = main_operation(board_values);
    }
-    if (key === "3"){
+    if (keyCode === UP_ARROW){
       reverse_values(board_values);
     }
-    else if(key === "2"){
+    else if(keyCode === RIGHT_ARROW){
       board_values = matrix_transpose(board_values);
    }
-   else if(key === "1"){
+   else if(keyCode === LEFT_ARROW){
     reverse_values(board_values);
     board_values = matrix_transpose(board_values);
    }
