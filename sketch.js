@@ -2,7 +2,10 @@
 function setup() {
   // put setup code here
     createCanvas(1500,850);
+    // create the initial board
     board_values = initialize_multidimen_array()
+
+    // inserting initial values
     console.table(board_values);
     random_insert();
     console.table(board_values);
@@ -23,6 +26,7 @@ function draw() {
 
 //  Draws the 4*4 board, with the values 
  function drawBoard(){
+  //  width of the square of each place.
   let board_dimension = 140;
     for (let i=0;i<4;i++){
       for (let j = 0;j<4;j++){
@@ -59,23 +63,9 @@ function draw() {
   }
  }
 
-//   shift everything towards the right (downwards in the board), helper function
- function right_shift(arr){
-   new_arr = [];
-   for (let i=0;i<arr.length;i++){
-      if (arr[i]!=0){
-        new_arr.push(arr[i])
-      }
-   }
-    difference = arr.length - new_arr.length;
-    zeros = Array(difference).fill(0);
-    new_arr = zeros.concat(new_arr);
-    return new_arr;
-  
- }
+ 
 
- function keyPressed(){
-   console.log(key);
+ function keyPressed(){ // performs the main operations, that is all the shifting operations for all the keys pressed
    if (key === "4"){ // down operation
       board_values = main_operation(board_values);
    }
@@ -90,7 +80,6 @@ function draw() {
    else if(key === "1"){ // left operation
      board_values = matrix_transpose(board_values);
      reverse_values(board_values);
-     console.log(board_values);
      board_values = main_operation(board_values);
    }
     if (key === "3"){
@@ -102,22 +91,10 @@ function draw() {
    else if(key === "1"){
     reverse_values(board_values);
     board_values = matrix_transpose(board_values);
-    console.log(board_values);
    }
   }
 
  
-
-
- function merge_right(arr){ // merge right, helper function
-  for (let ptr = arr.length - 1;ptr>0;ptr--){
-    if (arr[ptr-1] == arr[ptr]){
-      arr[ptr] = arr[ptr] + arr[ptr-1];
-      arr[ptr-1] = 0;
-    }
-  }
-  return arr;
- }
 
  function right_shift_and_merge(arr){ //performs the complete right shift and merging operation.
     arr = right_shift(arr);
@@ -126,7 +103,7 @@ function draw() {
     return arr;
  }
  
- function reverse_values(values){
+ function reverse_values(values){  // reveres the entire matrix, from the right to left(mirror image)
   for (let i = 0;i<4;i++){
     values[i].reverse();
   }
@@ -135,7 +112,7 @@ function draw() {
  
 
 
- function main_operation(board_values){
+ function main_operation(board_values){ // operation to be performed on every key stroke, essentially performs the down operation.
   control = Array_copy(board_values);
   for (let i=0;i < 4;i++){
     board_values[i] = right_shift_and_merge(board_values[i]);

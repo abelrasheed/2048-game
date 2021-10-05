@@ -34,3 +34,27 @@ function compare_array(array1,array2){ // return True if two arrays are differen
     }
     return false;
 }
+
+function right_shift(arr){ //   shift everything towards the right (downwards in the board), helper function
+    new_arr = [];
+    for (let i=0;i<arr.length;i++){
+       if (arr[i]!=0){
+         new_arr.push(arr[i])
+       }
+    }
+     difference = arr.length - new_arr.length;
+     zeros = Array(difference).fill(0);
+     new_arr = zeros.concat(new_arr);
+     return new_arr;
+   
+}
+
+function merge_right(arr){ // merge right, helper function
+    for (let ptr = arr.length - 1;ptr>0;ptr--){
+      if (arr[ptr-1] == arr[ptr]){
+        arr[ptr] = arr[ptr] + arr[ptr-1];
+        arr[ptr-1] = 0;
+      }
+    }
+    return arr;
+}
